@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title th:text="${title}">Coffee Bakery Shop</title>
+</head>
+
+<body>
+<h2>Add Blog Post</h2>
+<form th:action="@{/admin/blog/add}" method="post">
+  <input type="text" name="title" class="form-control" placeholder="Post Title" required><br>
+  <textarea name="content" class="form-control" placeholder="Post Content" required></textarea><br>
+  <button type="submit" class="btn btn-success">Add Post</button>
+</form>
+
+</body>
+</html>

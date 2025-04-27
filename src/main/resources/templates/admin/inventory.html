@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title th:text="${title}">Coffee Bakery Shop</title>
+</head>
+<body>
+<h2 xmlns:th="http://www.w3.org/1999/xhtml">Manage Inventory</h2>
+<a href="/admin/inventory/add" class="btn btn-primary mb-3">Add Product</a>
+<table class="table">
+  <thead>
+  <tr><th>Name</th><th>Price</th><th>Category</th><th>Action</th></tr>
+  </thead>
+  <tbody>
+  <tr th:each="product : ${products}">
+    <td th:text="${product.name}">Name</td>
+    <td th:text="${product.price}">Price</td>
+    <td th:text="${product.category}">Category</td>
+    <td>
+      <a th:href="@{/admin/inventory/edit/{id}(id=${product.id})}" class="btn btn-warning btn-sm">Edit</a>
+      <form th:action="@{/admin/inventory/delete/{id}(id=${product.id})}" method="post" style="display:inline;">
+        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+      </form>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

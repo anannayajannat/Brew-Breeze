@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title th:text="${title}">Coffee Bakery Shop</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery -->
+</head>
+<body>
+<div class="container mt-5">
+  <h2>Login</h2>
+
+  <form id="loginForm">
+    <div class="mb-3">
+      <label for="username" class="form-label">Username</label>
+      <input type="text" class="form-control" id="username" name="username" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" class="form-control" id="password" name="password" required>
+    </div>
+
+    <div id="errorMessage" style="display: none" class="alert alert-danger"></div>
+
+    <button type="submit" class="btn btn-primary">Login</button>
+  </form>
+</div>
+
+<script>
+  // Handle login form submission via AJAX
+  $("#loginForm").submit(function(event) {
+    event.preventDefault(); // Prevent default form submission
+
+    // Get the values from the form
+    var username = $("#username").val();
+    var password = $("#password").val();
+
+    // Send AJAX request to backend for authentication
+    $.ajax({
+      url: '/auth/login',
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify({ username: username, password: password }),
+      success: function(response) {
+        // On successful login, save JWT token to localStorage or sessionStorage
+        localStorage.setItem("jwtToken", response.token);
+        window.location.href = '/'; // Redirect to home page after successful login
+      },
+      error: function(xhr, status, error) {
+        // On error, display the error message
+        $("#errorMessage").text("Invalid username or password").show();
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

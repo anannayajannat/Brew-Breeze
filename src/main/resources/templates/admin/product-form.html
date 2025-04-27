@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Product Form</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+  <h2 th:text="${product.id} == null ? 'Add Product' : 'Edit Product'"></h2>
+
+  <form th:action="@{${product.id} == null ? '/admin/inventory/add' : '/admin/inventory/edit/' + ${product.id}}" method="post">
+    <div class="mb-3">
+      <label class="form-label">Name</label>
+      <input type="text" name="name" class="form-control" th:value="${product.name}" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Description</label>
+      <textarea name="description" class="form-control" th:text="${product.description}" required></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Price ($)</label>
+      <input type="number" name="price" step="0.01" class="form-control" th:value="${product.price}" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Category</label>
+      <input type="text" name="category" class="form-control" th:value="${product.category}" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Image URL</label>
+      <input type="text" name="image" class="form-control" th:value="${product.image}">
+    </div>
+
+    <button type="submit" class="btn btn-success">Save</button>
+    <a href="/admin/inventory" class="btn btn-secondary">Cancel</a>
+  </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h3>Blog Posts</h3>
+<a href="/admin/blog/add" class="btn btn-primary mb-3">Add Blog Post</a>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for post in blogPosts %}
+    <tr>
+        <td>{{ post.title }}</td>
+        <td>
+            <a href="/admin/blog/edit/{{ post.id }}" class="btn btn-warning btn-sm">Edit</a>
+            <a href="/admin/blog/delete/{{ post.id }}" class="btn btn-danger btn-sm">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

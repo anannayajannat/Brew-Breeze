@@ -1,0 +1,16 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title th:text="${title}">Coffee Bakery Shop</title>
+</head>
+<body>
+<h2 xmlns:th="http://www.w3.org/1999/xhtml">Blog Posts</h2>
+<div th:each="post : ${posts}" class="card mb-3">
+  <div class="card-body">
+    <h5 class="card-title" th:text="${post.title}"></h5>
+    <p class="card-text" th:text="${post.content}"></p>
+  </div>
+</div>
+</body>
+
+</html>

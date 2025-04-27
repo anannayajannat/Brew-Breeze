@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title th:text="${title}">Admin Dashboard - Brew & Bite</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    body {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+    .sidebar {
+        height: 100vh;
+        position: fixed;
+        width: 250px;
+        background-color: #343a40;
+        padding-top: 1rem;
+    }
+    .sidebar a {
+        color: #fff;
+        padding: 10px;
+        display: block;
+        text-decoration: none;
+    }
+    .sidebar a:hover {
+        background-color: #495057;
+    }
+    .content {
+        margin-left: 250px;
+        padding: 2rem;
+        flex-grow: 1;
+    }
+  </style>
+</head>
+<body>
+
+<div class="sidebar">
+  <h4 class="text-white text-center mb-4">Admin Panel</h4>
+  <a href="/admin/dashboard"><i class="bi bi-house"></i> Dashboard</a>
+  <a href="/admin/inventory"><i class="bi bi-box-seam"></i> Inventory</a>
+  <a href="/admin/orders">
+    <i class="bi bi-receipt"></i> Orders
+    <span class="badge bg-danger ms-2" th:text="${newOrdersCount}"></span>
+  </a>
+  <a href="/admin/blog"><i class="bi bi-journal-text"></i> Blog Posts</a>
+  <hr class="text-white">
+  <div class="text-center">
+    <button class="btn btn-sm btn-light" id="toggleThemeBtn">Light/Dark</button>
+  </div>
+</div>
+
+<div class="content">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+    <div class="container-fluid">
+      <span class="navbar-brand mb-0 h1">Admin Dashboard</span>
+      <div class="dropdown ms-auto">
+        <a class="btn btn-outline-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown">
+          Profile
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
+          <li><a class="dropdown-item" href="/auth/logout">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div th:replace="${content}"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  const toggleBtn = document.getElementById('toggleThemeBtn');
+  toggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('bg-dark');
+      document.querySelector('.content').classList.toggle('text-white');
+  });
+</script>
+</body>
+</html>
