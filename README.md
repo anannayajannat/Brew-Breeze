@@ -1,1 +1,1 @@
-
+A full-stack monolithic web application designed for a coffee dessert shop, enabling users to browse products, customer interactions, add items to cart, and manage orders with an admin dashboard using Spring Boot (JAVA) backend and React.js (Vite) frontend, following a clean MVC architecture, implementing JWT-based authentication, role-based access, and RESTful APIs.. Utilized PostgreSQL with JPA for data management and REST APIs for frontend-backend integration.
